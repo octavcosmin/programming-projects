@@ -57,7 +57,7 @@ int main() {
         if (ok) solutii.push_back(pornire);
 
     }
-    printf("%d\n", solutii.size());
+    printf("%d\n", int(solutii.size()));
     for (vector<int>::iterator it = solutii.begin(); it != solutii.end(); ++it)
         printf("%d ", *it);
 
