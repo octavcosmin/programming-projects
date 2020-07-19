@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1570288275 source:c:\users\cosmi\onedrive\codeblocks-workspace\#447 cifmid\main.cpp
-	<iostream>
-	<cmath>
-	<algorithm>
-	<cstring>
-	<stdio.h>
-
