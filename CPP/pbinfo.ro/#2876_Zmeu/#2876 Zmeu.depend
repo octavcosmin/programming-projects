@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1570281479 source:c:\users\cosmi\onedrive\codeblocks-workspace\#2876 zmeu\main.cpp
+	<iostream>
+	<fstream>
+

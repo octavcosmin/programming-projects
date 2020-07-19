@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1570347018 source:c:\users\cosmi\onedrive\codeblocks-workspace\#335 expresie3\main.cpp
+	<iostream>
+	<stdio.h>
+	<cmath>
+
