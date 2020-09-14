@@ -1,18 +1,19 @@
 <<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/
 
-###########
 =======
 # Created by https://www.toptal.com/developers/gitignore/api/c++,python,java,visualstudiocode,vim,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,python,java,visualstudiocode,vim,linux
 
 >>>>>>> 13b6bbaf123914d40a2543760ba593e3e3c2bd22
+
+###########
 ### C++ ###
 ###########
 	# Extension-less files in CPP folder
-	**/CPP/**/*
-	!**/CPP/**/*.*
-	!**/CPP/**/*/
+	CPP/**/*
+	!CPP/**/*.*
+	!CPP/**/*/
 	
 	# Prerequisites
 	**/*.d
