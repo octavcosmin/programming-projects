@@ -11,9 +11,9 @@
 ### C++ ###
 ###########
 	# Extension-less files in CPP folder
-	**/CPP/**/*
-	!**/CPP/**/*.*
-	!**/CPP/**/*/
+	CPP/**/*
+#	!CPP/**/*.*
+#	!CPP/**/*/
 	
 	# Prerequisites
 	**/*.d
