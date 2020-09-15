@@ -10,10 +10,6 @@
 ###########
 ### C++ ###
 ###########
-	# Extension-less files in CPP folder
-	CPP/**/*
-#	!CPP/**/*.*
-#	!CPP/**/*/
 	
 	# Prerequisites
 	**/*.d
@@ -46,6 +42,7 @@
 	# Executables
 	**/*.exe
 	**/*.app
+	**/*.bin
 	
 	# CodeBlocks projects
 	**/*.cbp
