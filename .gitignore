@@ -11,6 +11,10 @@
 ### C++ ###
 ###########
 
+# In and Out files
+**/*.in
+**/*.out
+
 # Prerequisites
 **/*.d
 
