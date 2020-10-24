@@ -11,7 +11,7 @@ std::vector<node> biTree;
 
 //* Pre-declaring functions
 int findRoot(std::vector<node> binaryTree);
-int printTree(std::vector<node> binaryTree, int currentIndex);
+void printTreePreorder(std::vector<node> binaryTree, int currentIndex);
 
 int main() {
 
@@ -31,7 +31,7 @@ int main() {
 
     // Calling recursive function
     out = fopen("preordine.out", "w");
-    printTree(biTree, rootIndex);
+    printTreePreorder(biTree, rootIndex);
     fclose(out);
 
     return 0;
@@ -55,12 +55,11 @@ int findRoot(std::vector<node> binaryTree) {
     return -1;
 }
 // Recursive! Print binary tree
-int printTree(std::vector<node> binaryTree, int currentIndex) {
+void printTreePreorder(std::vector<node> binaryTree, int currentIndex) {
     if(binaryTree[currentIndex -1].value) {
         fprintf(out, "%d ", binaryTree[currentIndex -1].value);
 
-        printTree(binaryTree, binaryTree[currentIndex -1].left);
-        printTree(binaryTree, binaryTree[currentIndex -1].right);
+        printTreePreorder(binaryTree, binaryTree[currentIndex -1].left);
+        printTreePreorder(binaryTree, binaryTree[currentIndex -1].right);
     }
-    return 0;
 }
