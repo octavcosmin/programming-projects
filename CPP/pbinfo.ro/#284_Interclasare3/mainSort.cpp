@@ -20,7 +20,6 @@ int main() {
         else
             --n;
     }
-
     sort(v+1, v+1+n);
 
     for(int i = 1; i <= n; ++i) {
