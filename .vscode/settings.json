@@ -4,6 +4,7 @@
         "iostream": "cpp",
         "cstdio": "cpp",
         "span": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "algorithm": "cpp"
     }
 }
