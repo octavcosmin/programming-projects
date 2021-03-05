@@ -7,7 +7,7 @@ using namespace std;
 struct girl {
     int points, chance;
     double coef;
-};
+}; 
 
 vector<girl> v;
 int n, swipes, result;
