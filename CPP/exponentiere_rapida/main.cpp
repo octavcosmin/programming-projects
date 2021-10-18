@@ -9,7 +9,7 @@ long long exp(int b, int e) {
 }
 
 int main() {
-    int a, b;
+    int a,b;
     scanf("%d%d", &a, &b);
     printf("%ld", exp(a,b));
     return 0;
