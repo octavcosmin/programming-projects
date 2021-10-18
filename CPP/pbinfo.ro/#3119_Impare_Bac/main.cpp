@@ -11,11 +11,11 @@ int main() {
 }
 
 void Impare(int &n) {
-    int nr[11]{0,0,0,0,0,0,0,0,0,0,0}, k{1};
+    int nr[11]{0,0,0,0,0,0,0,0,0,0,0}, k{0};
     while(n) {
         nr[k++] = n%2 ? n%10-1 : n%10;
         n /= 10;
     }
-    while(k-- > 1)
+    while(k-- > 0)
         n = n*10 + nr[k];
 }

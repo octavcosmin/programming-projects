@@ -11,21 +11,13 @@ int main() {
 }
 
 void inserare(int &n) {
-    int ins{0};
-    bool n0 = !(n%10);
+    int nr[10]{0,0,0,0,0,0,0,0,0,0}, k{0};
     while(n) {
-        if(!(n%100/10))
-            ins = ins*10 + n%10;
-        else
-            ins = ins*100 + 10*(n%10) + ((n%10 > n%100/10) ? (n%10 - n%100/10) : (n%100/10 - n%10));
+        nr[k++] = n%10;
+        nr[k++] = n%10 > n%100/10 ? n%10 - n%100/10 : n%100/10 - n%10;
         n /= 10;
     }
-
-    int res{0};
-    while(ins) {
-        res = res*10 + ins%10;
-        ins /= 10;
-    }
-    n = res;
-    if(n0) n *= 10;
+    --k;
+    while(k-- > 0)
+        n = n*10 + nr[k];
 }
