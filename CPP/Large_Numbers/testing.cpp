@@ -45,5 +45,17 @@ int main() {
     fout << "x != y: ";
     if(x != y) fout << "true" << '\n';
     else fout << "false" << '\n';
+
+    fout << "String for x: " << x.toString() << '\n';
+    fout << "String for y: " << y.toString() << '\n';
+
+    LargeNumber m;
+    m = -645747;
+    fout << "Initialized with int (m): " << m << '\n';
+
+    string str = "-96308763084656";
+    LargeNumber n;
+    n = str;
+    fout << "Initialized with string (n): " << n << '\n';
     return 0;
 }

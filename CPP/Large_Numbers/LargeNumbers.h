@@ -1,5 +1,6 @@
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class LargeNumber {
 
         friend bool operator == (const LargeNumber& x1, const LargeNumber& x2);
         friend bool operator != (const LargeNumber& x1, const LargeNumber& x2);
-        friend bool operator > (const LargeNumber& x1, const LargeNumber& x2);        
+        friend bool operator > (const LargeNumber& x1, const LargeNumber& x2);
         friend bool operator >= (const LargeNumber& x1, const LargeNumber& x2);
         friend bool operator < (const LargeNumber& x1, const LargeNumber& x2);
         friend bool operator <= (const LargeNumber& x1, const LargeNumber& x2);
@@ -208,17 +209,61 @@ class LargeNumber {
             reverse(sol.digit.begin(), sol.digit.end());
             return sol;
         }
+
+        LargeNumber operator = (LargeNumber x) {
+
+            this->digit = x.digit;
+            this->sign = x.sign;
+
+            return *this;
+        }
+
+        LargeNumber operator = (string x) {
+
+            if(*x.begin() == '-')
+                this->sign = 0;
+
+            for(string::iterator it = x.begin(); it != x.end(); ++it) {
+                if('0' <= *it && *it <= '9')
+                    this->digit.push_back(*it - '0');
+            }
+
+            return *this;
+        }
+
+        LargeNumber operator = (int x) {
+            
+            string str = to_string(x);
+            *this = str;
+
+            return *this;
+        }
+
+        string toString () {
+
+            string str;
+            for(auto it = this->digit.begin(); it != this->digit.end(); ++it)
+                str.push_back((char)(*it + '0'));
+
+            if(!this->sign)
+                str.insert(str.begin(), '-');
+
+            return str;
+        }
 };
 
 LargeNumber operator >> (istream &in, LargeNumber &x) {
     string tmp;
     in >> tmp;
+
     if(*tmp.begin() == '-')
         x.sign = 0;
+
     for(string::iterator it = tmp.begin(); it != tmp.end(); ++it) {
         if('0' <= *it && *it <= '9')
             x.digit.push_back(*it - '0');
     }
+
     return x;
 }
 
