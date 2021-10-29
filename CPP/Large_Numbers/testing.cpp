@@ -13,9 +13,13 @@ int main() {
     fin >> y;
 
     fout << "x: " << x << '\n';
+    fout << "x's sign: " << x.sign << '\n';
     fout << "y: " << y << '\n';
+    fout << "y's sign: " << y.sign << '\n';
 
     fout << "Sum: " << x + y << '\n';
+    fout << "Difference: " << x - y << '\n';
+    fout << "The other difference: " << y - x << '\n';
     fout << "Difference (abs): " << (x >= y ? x - y : y - x) << '\n';
 
     fout << "x > y: ";

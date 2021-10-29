@@ -21,10 +21,16 @@ class LargeNumber {
 
         LargeNumber operator + (const LargeNumber& x) {
 
+            //Cazuri speciale pentru semne
+
+            //* Cazul (+,-) si (-,+)
             if(this->sign != x.sign) {
-                LargeNumber tmp;
+                LargeNumber tmp, tmp2;
                 tmp.digit = this->digit;
-                return tmp - x;
+                tmp.sign = 1;
+                tmp2.digit = x.digit;
+                tmp2.sign = 1;
+                return tmp - tmp2;
             }
 
             LargeNumber sol;
@@ -75,43 +81,127 @@ class LargeNumber {
 
         LargeNumber operator - (const LargeNumber& x) {
 
+            //Cazuri speciale pentru semne
+
+            //* Cazul + si -
+            if(this->sign == 1 && x.sign == 0) {
+                LargeNumber tmp, tmp2;
+                tmp.digit = this->digit;
+                tmp.sign = 1;
+                tmp2.digit = x.digit;
+                tmp2.sign = 1;
+                return tmp + tmp2;
+            }
+
+            //* Cazul - si +
+            if(this->sign == 0 && x.sign == 1) {
+                LargeNumber tmp, tmp2;
+                tmp.digit = this->digit;
+                tmp.sign = 1;
+                tmp2.digit = x.digit;
+                tmp2.sign = 1;
+                LargeNumber reverseTmp = tmp + tmp2;
+                reverseTmp.sign = reverseTmp.sign ? 0 : 1;
+                return reverseTmp;
+            }
+
+            //* Cazul - si -
+            if(this->sign == 0 && x.sign == 0) {
+                LargeNumber tmp, tmp2;
+                tmp.digit = this->digit;
+                tmp.sign = 1;
+                tmp2.digit = x.digit;
+                tmp2.sign = 1;
+                return tmp2 - tmp;
+            }
+
+
             LargeNumber sol;
             bool take{false};
 
             auto it1 = this->digit.end() -1;
             auto it2 = x.digit.end() -1;
 
-            for(; it1 != this->digit.begin() -1 && it2 != x.digit.begin() -1; --it1, --it2) {
-                short tmp = *it1 - *it2 - take;
-                take = false;
-                if(tmp < 0) {
-                    take = true;
-                    tmp += 10;
+            //Cazul primul termen mai MARE decat al doilea
+            if(*this >= x) {
+                    
+                for(; it1 != this->digit.begin() -1 && it2 != x.digit.begin() -1; --it1, --it2) {
+                    short tmp = *it1 - *it2 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
+
+                    sol.digit.push_back(tmp);
                 }
 
-                sol.digit.push_back(tmp);
+                for(; it1 != this->digit.begin() -1; --it1) {
+                    short tmp = *it1 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
+
+                    sol.digit.push_back(tmp);
+                }
+
+                for(; it2 != x.digit.begin() -1; --it2) {
+                    short tmp = *it2 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
+
+                    sol.digit.push_back(tmp);
+                }
+
+                if(take)
+                    sol.sign = 0;
+                    
             }
+            
+            //Cazul primul termen mai MIC decat al doilea
+            else {
+                    
+                for(; it1 != this->digit.begin() -1 && it2 != x.digit.begin() -1; --it1, --it2) {
+                    short tmp = *it2 - *it1 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
 
-            for(; it1 != this->digit.begin() -1; --it1) {
-                short tmp = *it1 - take;
-                take = false;
-                if(tmp < 0) {
-                    take = true;
-                    tmp += 10;
+                    sol.digit.push_back(tmp);
                 }
 
-                sol.digit.push_back(tmp);
-            }
+                for(; it1 != this->digit.begin() -1; --it1) {
+                    short tmp = *it1 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
 
-            for(; it2 != x.digit.begin() -1; --it2) {
-                short tmp = *it2 - take;
-                take = false;
-                if(tmp < 0) {
-                    take = true;
-                    tmp += 10;
+                    sol.digit.push_back(tmp);
                 }
 
-                sol.digit.push_back(tmp);
+                for(; it2 != x.digit.begin() -1; --it2) {
+                    short tmp = *it2 - take;
+                    take = false;
+                    if(tmp < 0) {
+                        take = true;
+                        tmp += 10;
+                    }
+
+                    sol.digit.push_back(tmp);
+                }
+
+                if(!take)
+                    sol.sign = 0;
+
             }
 
             while(sol.digit.back() == 0) sol.digit.pop_back();
@@ -141,6 +231,9 @@ ostream &operator << (ostream &out, LargeNumber x) {
 }
 
 bool operator == (const LargeNumber& x1, const LargeNumber& x2) {
+    if(x1.sign != x2.sign)
+        return 0;
+
     auto it1 = x1.digit.begin(), it2 = x2.digit.begin();
 
     for(; it1 != x1.digit.end() && it2 != x2.digit.end(); ++it1, ++it2)
@@ -155,6 +248,9 @@ bool operator != (const LargeNumber& x1, const LargeNumber& x2) {
 }
 
 bool operator > (const LargeNumber& x1, const LargeNumber& x2) {
+    if(x1.sign != x2.sign)
+        return x1.sign > x2.sign;
+
     if(x1.digit.size() != x2.digit.size())
         return x1.digit.size() > x2.digit.size();
     
@@ -167,6 +263,9 @@ bool operator > (const LargeNumber& x1, const LargeNumber& x2) {
 }
 
 bool operator < (const LargeNumber& x1, const LargeNumber& x2) {
+    if(x1.sign != x2.sign)
+        return x1.sign < x2.sign;
+
     if(x1.digit.size() != x2.digit.size())
         return x1.digit.size() < x2.digit.size();
     
