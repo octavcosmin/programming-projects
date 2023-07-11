@@ -10,9 +10,7 @@ int n, k;
 void back(int k) {
     if (k == n) {
         for (int i = 1; i <= n; ++i)
-            //fout << arr[i] << ' ';
             fprintf(out, "%d ", arr[i]);
-        //fout << "\n";
         fprintf(out, "\n");
         return;
     }
@@ -34,7 +32,6 @@ void back(int k) {
 }
 
 int main() {
-    //fin >> n;
     fscanf(in, "%d", &n);
     
     back(0);
