@@ -47,6 +47,7 @@
 **/*.exe
 **/*.app
 **/*.bin
+**/CPP/**/output
 
 # CodeBlocks projects
 **/*.cbp
